@@ -20,12 +20,15 @@ const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
   try {
-    console.log("スラッシュコマンド登録中...");
+    console.log("サーバー専用コマンド登録中...");
     await rest.put(
-      Routes.applicationCommands(process.env.CLIENT_ID),
+      Routes.applicationGuildCommands(
+        process.env.CLIENT_ID,
+        process.env.GUILD_ID
+      ),
       { body: commands }
     );
-    console.log("登録完了！");
+    console.log("サーバー専用コマンド登録完了！");
   } catch (error) {
     console.error(error);
   }
