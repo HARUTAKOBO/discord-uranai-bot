@@ -1,0 +1,32 @@
+import { REST, Routes } from "discord.js";
+import "dotenv/config";
+
+const commands = [
+  {
+    name: "uranai",
+    description: "誕生日から占います",
+    options: [
+      {
+        name: "birthday",
+        description: "YYYY-MM-DD",
+        type: 3,
+        required: true,
+      },
+    ],
+  },
+];
+
+const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
+
+(async () => {
+  try {
+    console.log("スラッシュコマンド登録中...");
+    await rest.put(
+      Routes.applicationCommands(process.env.CLIENT_ID),
+      { body: commands }
+    );
+    console.log("登録完了！");
+  } catch (error) {
+    console.error(error);
+  }
+})();
