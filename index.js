@@ -29,9 +29,11 @@ client.on("interactionCreate", async interaction => {
     const day=d.getDate();
     const z=zodiac(d.getMonth()+1,day);
     const e=eto[(d.getFullYear()-4)%12];
-    interaction.reply(
-      `🎂 占い結果\n\n💰 金運：${money[day][0]}位（${money[day][1]}）\n🩺 健康運：${health[z][0]}位（${health[z][1]}）\n❤️ 出会い運：${meet[e][0]}位（幸運人：${meet[e][1]}）`
-    );
+    interaction.reply({
+      content: `🎂 占い結果\n\n💰 金運：...\n💪 健康運：...\n❤️ 出会い運：...`,
+      ephemeral: true
+    });
+
   }
 });
 
